@@ -64,14 +64,25 @@ const messages = {
   ],
   alternatives: ["Go on...", "What do you mean?"],
 };
+const validation = document.createElement("p");
+validation.classList.add("validation");
+validation.innerHTML = "type something!";
 
 //looks for enter
+//and replaces input with ""
+//spits out the text typed in id input as
+//changed this to validate in .value of inputField / input
 const inputField = document.getElementById("input");
 inputField.addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
+  if (e.code === "Enter" && inputField.value != "") {
     let input = inputField.value;
-    inputField.value = "";
     output(input);
+    inputField.value = "";
+    validation.style.display = "none";
+  } else if (e.code === "Enter") {
+    document.body.appendChild(validation);
+    validation.style.display = "flex";
+    inputField.value = "";
   }
 });
 
@@ -117,10 +128,10 @@ function addChatEntry(input, product) {
 
   setTimeout(() => {
     botText.innerText = `${product}`;
-  }, 2000);
+  }, 1500);
 }
 
-//takes input and decides what output
+//makes text lower case and replaces inputs for easier
 function output(input) {
   let product;
   let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");

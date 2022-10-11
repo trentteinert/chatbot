@@ -73,3 +73,12 @@ input {
   align-items: center;
   margin: 1px;
 }
+.validation {
+  font-size: 14px;
+  color: rgb(201, 92, 92);
+  width: 52vw;
+  margin: auto;
+  padding-top: 10px;
+  font-family: "Consolas";
+  justify-content: left;
+}
